@@ -7,5 +7,6 @@ php:
 
 before_script:
   - composer install --prefer-source --no-interaction
+  - composer require phpunit/phpunit 5.7.3
 
 script: vendor/bin/phpunit --debug
