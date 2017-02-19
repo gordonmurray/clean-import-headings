@@ -7,7 +7,7 @@ class cleanImportHeadings
 
     /**
      * Given an array of "messy" strings, clean them up as best as possible
-     * 
+     *
      * @param $originalFieldNamesArray array
      * @return mixed array
      */
@@ -22,7 +22,6 @@ class cleanImportHeadings
 
         // strip out the words from the original fields names
         return $this->removeProvidedWords($fieldNamesArray, $wordsToDrop);
-
     }
 
     /**
