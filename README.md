@@ -1,4 +1,4 @@
-# Clean Import Headings
+# Clean Import Headings 
 
 [![Build Status](https://travis-ci.org/gordonmurray/clean-import-headings.svg?branch=master)](https://travis-ci.org/gordonmurray/clean-import-headings)
 
