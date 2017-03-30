@@ -108,6 +108,12 @@ class cleanImportHeadings
         return (trim(strtolower(str_replace(array("_", "/"), " ", $string))));
     }
 
+    /**
+     * Split strings that have uppercase letters in them, like firstName
+     * 
+     * @param $string
+     * @return mixed
+     */
     public function splitAtUpperCase($string)
     {
         return preg_replace('/(?<!^)([A-Z])/', ' \\1', $string);
