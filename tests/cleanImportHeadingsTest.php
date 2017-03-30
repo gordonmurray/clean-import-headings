@@ -45,9 +45,9 @@ class cleanImportHeadingsTest extends PHPUnit_Framework_TestCase
 
         $stringsArray = array('company name', 'company address 1', 'company telephone');
 
-        $wordsToRemove = array('company','1');
+        $wordsToRemove = array('company', '1');
 
-        $expectedResponse = array('name','address','telephone');
+        $expectedResponse = array('name', 'address', 'telephone');
 
         $response = $cleanImportHeadings->removeProvidedWords($stringsArray, $wordsToRemove);
 
@@ -58,9 +58,9 @@ class cleanImportHeadingsTest extends PHPUnit_Framework_TestCase
     {
         $cleanImportHeadings = new cleanImportHeadings();
 
-        $stringsArray = array('Company Name', 'Company Address_1', 'Company_Telephone');
+        $stringsArray = array('Company Name', 'Company Address_1', 'Company_Telephone', 'FirstName');
 
-        $expectedResponse = array('name','address 1','telephone');
+        $expectedResponse = array('name', 'address 1', 'telephone','first name');
 
         $response = $cleanImportHeadings->cleanStringsArray($stringsArray);
 
@@ -78,6 +78,27 @@ class cleanImportHeadingsTest extends PHPUnit_Framework_TestCase
         $response = $cleanImportHeadings->determineWordsToDrop($stringsArray);
 
         $this->assertEquals($expectedResponse, $response);
+    }
+
+    function testCamelCaseWorks()
+    {
+        $cleanImportHeadings = new cleanImportHeadings();
+
+        $response = $cleanImportHeadings->splitAtUpperCase('firstName');
+
+        $this->assertEquals('first Name', $response);
+
+        $response = $cleanImportHeadings->splitAtUpperCase('FirstName');
+
+        $this->assertEquals('First Name', $response);
+
+        $response = $cleanImportHeadings->splitAtUpperCase('Firstname');
+
+        $this->assertEquals('Firstname', $response);
+
+        $response = $cleanImportHeadings->splitAtUpperCase('MyFirstName');
+
+        $this->assertEquals('My First Name', $response);
     }
 
 }

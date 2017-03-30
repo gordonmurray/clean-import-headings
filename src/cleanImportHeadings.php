@@ -13,9 +13,11 @@ class cleanImportHeadings
      */
     public function cleanStringsArray($originalFieldNamesArray)
     {
+        // split at uppercase letters
+        $fieldNamesArray = array_map(array($this, 'splitAtUpperCase'), $originalFieldNamesArray);
 
         // basic clean of the field names
-        $fieldNamesArray = array_map(array($this, 'basicClean'), $originalFieldNamesArray);
+        $fieldNamesArray = array_map(array($this, 'basicClean'), $fieldNamesArray);
 
         // determine words which occur most often
         $wordsToDrop = $this->determineWordsToDrop($fieldNamesArray);
@@ -104,5 +106,10 @@ class cleanImportHeadings
     public function basicClean($string)
     {
         return (trim(strtolower(str_replace(array("_", "/"), " ", $string))));
+    }
+
+    public function splitAtUpperCase($string)
+    {
+        return preg_replace('/(?<!^)([A-Z])/', ' \\1', $string);
     }
 }
